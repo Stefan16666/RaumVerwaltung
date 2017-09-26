@@ -1,0 +1,174 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>Innovation 4 Austria</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/landing-page.css" rel="stylesheet" />
+
+
+    @Styles.Render("~/Content/toastr")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/datepicker")
+
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav"><h1 class="Innovation4Austria">Innovation 4 Austria</h1></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            @if (Request.IsAuthenticated)
+            {
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                            <a>@Html.ActionLink("Abmelden", "Abmelden", "Benutzer", null, new { @class = "btn buttonAction" })</a>
+                        </li>
+                        <li>
+                            <a>@Html.ActionLink("Profil", "ProfilAnzeigen", "Benutzer", null, new { @class = "btn buttonAction" })</a>
+                        </li>
+                        <li>
+                            <a>@Html.ActionLink("Raumübersicht", "Laden", "Raum", null, new { @class = "btn buttonAction" })</a>
+                        </li>
+                        @if (!User.IsInRole(Innovation4Austria.web.AppCode.Validation.INNOVATION4AUSTRIAMITARBEITER))
+                        {
+                            <li>
+                                <a>@Html.ActionLink("meine Übersicht", "Dashboard", "Benutzer", null, new { @class = "btn buttonAction" })</a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (User.IsInRole(Innovation4Austria.web.AppCode.Validation.INNOVATION4AUSTRIAMITARBEITER))
+                        {
+                            <li>
+                                <a>@Html.ActionLink("Alle Firmen", "FirmenAuflistung", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction" })</a>
+                            </li>
+                            <li>
+                                <a>@Html.ActionLink("Firma anlegen", "FirmaAnlegen", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction" })</a>
+                            </li>
+                            <li>
+                                <a>@Html.ActionLink("Rechnungsverwaltung", "RechnungsUebersicht", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction" })</a>
+                            </li>
+                            <li>
+                                <a>@Html.ActionLink("RaumAuslastung", "RaumAuslastung", "Auslastung", null, new { @class = "btn buttonAction" })</a>
+                            </li>
+
+                        }
+                    </ul>
+                </div>
+            }
+            <!-- /.navbar-collapse -->
+        </div>
+
+        <!-- /.container -->
+    </nav>
+
+
+
+    <!-- Header -->
+    <div class="intro-header">
+        <div class="container">
+
+            @RenderBody()
+
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    @*<footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#contact">Contact</a>
+                        </li>
+                        <li>
+                            <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+    </footer>*@
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/datepickerJS")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/toastr")
+
+
+
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "1500",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        @{
+
+        if (TempData[Innovation4Austria.web.AppCode.ConstStrings.WARNING_MESSAGE] != null)
+        {
+               <text>
+        toastr['warning']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.WARNING_MESSAGE]')
+        </text>
+    }
+    if (TempData[Innovation4Austria.web.AppCode.ConstStrings.ERROR_MESSAGE] != null)
+    {
+                 <text>
+        toastr['error']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.ERROR_MESSAGE]')
+        </text>
+    }
+    if (TempData[Innovation4Austria.web.AppCode.ConstStrings.SUCCESS_MESSAGE] != null)
+    {
+        <text>
+        toastr['success']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.SUCCESS_MESSAGE]')
+        </text>
+    }
+
+}
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,124 @@
+﻿@model Innovation4Austria.web.Models.FilterModel
+@{
+    ViewBag.Title = "Laden";
+}
+@using (Ajax.BeginForm("KartenAnsicht", "Raum", new AjaxOptions() { UpdateTargetId = "zeigeRaeume", OnSuccess = "ZeigeMeldung()" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container" style="margin-top:10em;">
+        <div class="row col-md-12 FontSize" id="buchung_rand">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4 class="color margin_buchung">Buchungszeitraum</h4>
+                    <input type="text" id="config-demo" name="datumVonBis" class="form-control buchungsZeitraum" style="color:black">
+                </div>
+                <div class="col-md-2">
+                    <h4 class="color margin_buchung">Raumart</h4>
+                    <div>@Html.DropDownListFor(x => x.Art_id, new SelectList(Model.Art, "Id", "Bezeichnung"), new { @class = "raumArt" })</div>
+                </div>
+                <div class="col-md-6" id="ausstattung">
+                    <h4 class="color margin_buchung">Ausstattung</h4>
+                    <table>
+
+                        <tr>
+                            @foreach (var item in Model.Ausstattung)
+                            {
+                                <td>
+                                    <label class="btn">
+                                        <img src="~/Bild/IconZuAusstattung/@item.Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung" onclick="auswahl(@item.Id)" style="width:2.4em">
+                                        <input type="checkbox" id="item4" name="ausstattung" value="@item.Id" autocomplete="off" />
+                                    </label>
+                                </td>
+                            }
+                            <td>&nbsp;&nbsp;</td>
+                            <td>&nbsp;&nbsp;</td>
+                            <td>&nbsp;&nbsp;</td>
+                            <td>&nbsp;&nbsp;</td>
+                            <td>
+                                <input type="submit" value="Filtern" class="btn btn-default" id="FilterButton" />
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+<div class="row" id="zeigeRaeume">
+    <div>
+        @*@Html.Partial("_KartenAnsicht", Model.gebuchteRaeume)*@
+    </div>
+</div>
+
+
+
+
+
+@section scripts
+{
+    @*<script type="text/javascript" src="~/Scripts/moment.js"></script>*@
+
+    <script type="text/javascript">
+
+        function ZeigeMeldung() {
+            console.log($("#raumanzeige").data().message);
+
+            var message = $("#raumanzeige").data().message
+            if (message!=null && message!="")
+                toastr['warning'](message);
+        }
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+
+        $(document).ready(function () {
+            //moment.locale('de');
+            $('#config-demo').daterangepicker({
+                //{ dateFormat: 'dd-mm-yy' } ,
+                //function (start, end, label) {
+                //    console.log("New date range selected: ' +  start.format('DD.MM.YYYY') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+                //}
+                "locale": {
+                    "format": "DD.MM.YYYY",
+                    "separator": " - ",
+                    "applyLabel": "Apply",
+                    "cancelLabel": "Cancel",
+                    "fromLabel": "From",
+                    "toLabel": "To",
+                    "customRangeLabel": "Custom",
+                    "daysOfWeek": [
+                        "So",
+                        "Mo",
+                        "Di",
+                        "Mi",
+                        "Do",
+                        "Fr",
+                        "Sa"
+                    ],
+                    "monthNames": [
+                        "Jänner",
+                        "Februar",
+                        "März",
+                        "April",
+                        "Mai",
+                        "Juni",
+                        "Juli",
+                        "August",
+                        "September",
+                        "Oktober",
+                        "November",
+                        "Dezember"
+                    ],
+                    "firstDay": 1
+                    @*"minDate": "@DateTime.Today.ToShortDateString()"*@
+                }
+            });
+        });
+    </script>
+}

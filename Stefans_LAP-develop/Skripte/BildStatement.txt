@@ -1,0 +1,60 @@
+/*INSERT INTO Bild (bilddaten, raum_id)
+SELECT BulkColumn, 1
+FROM Openrowset( 
+Bulk 'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\1_hotel_test.jpg', Single_Blob) AS import;
+GO
+
+INSERT INTO Bild(bilddaten, raum_id)
+SELECT BulkColumn, 2
+FROM Openrowset( 
+Bulk 'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\2_hotel_test.jpg', Single_Blob) AS import;
+GO
+
+INSERT INTO Bild (bilddaten, raum_id)
+SELECT BulkColumn, 3
+FROM Openrowset( 
+Bulk 'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\3_hotel_test.jpg', Single_Blob) AS import;
+GO
+
+INSERT INTO Bild (bilddaten, raum_id)
+SELECT BulkColumn,4
+FROM Openrowset( 
+Bulk 'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\4_hotel_test.jpg', Single_Blob) AS import;
+GO
+
+INSERT INTO Bild(bilddaten, raum_id)
+SELECT BulkColumn,4
+FROM Openrowset( 
+Bulk 'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\5_hotel_test.jpg', Single_Blob) AS import;
+GO
+
+INSERT INTO Bild(bilddaten, raum_id)
+SELECT BulkColumn,5
+FROM Openrowset( 
+Bulk 'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\1_reise_test.jpg', Single_Blob) AS import;	
+GO
+
+INSERT INTO Bild(bilddaten, raum_id)
+SELECT BulkColumn,6
+FROM Openrowset( 
+Bulk 'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\2_reise_test.jpg', Single_Blob) AS import;
+GO
+
+INSERT INTO Bild(bilddaten, raum_id)
+SELECT BulkColumn,7
+FROM Openrowset( 
+Bulk 'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\3_reise_test.jpg', Single_Blob) AS import;
+GO
+
+INSERT INTO Bild(bilddaten, raum_id)
+SELECT BulkColumn ,8
+FROM Openrowset( 
+Bulk 'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\4_reise_test.jpg', Single_Blob) AS import;
+GO
+
+INSERT INTO Bild (bilddaten, raum_id)
+SELECT BulkColumn,9
+FROM Openrowset( 
+Bulk 'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\5_reise_test.jpg', Single_Blob) AS import;
+GO
+*/

@@ -1,0 +1,72 @@
+﻿@model Innovation4Austria.web.Models.BenutzerVerwaltungsModel
+
+@using (Html.BeginForm("BenutzerProfil", "Benutzer", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="FontSize">
+                @Html.LabelFor(model => model.FirmenName, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                <div class="col-md-8">
+                    @Html.DisplayFor(model => model.FirmenName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirmenName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="FontSize">
+                @Html.LabelFor(model => model.Emailadresse, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                <div class="col-md-8">
+                    @Html.DisplayFor(model => model.Emailadresse, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Emailadresse, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="FontSize">
+                @Html.LabelFor(model => model.Rolle, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                <div class="col-md-8">
+                    @Html.DisplayFor(model => model.Rolle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Rolle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="FontSize">
+                @Html.LabelFor(model => model.Nachname, htmlAttributes: new { @class = "control-label col-md-4" })
+            </div>
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Nachname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nachname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="FontSize">
+                @Html.LabelFor(model => model.Vorname, htmlAttributes: new { @class = "control-label col-md-4" })
+            </div>
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Vorname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Vorname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                <input type="submit" value="Speichern" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

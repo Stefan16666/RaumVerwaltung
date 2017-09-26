@@ -1,0 +1,39 @@
+﻿@model Innovation4Austria.web.Models.FirmenModel
+
+
+@using (Html.BeginForm("FirmenAuflistung", "Innovation4AustriaMitarbeiter", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="fa-border img-rounded" style="margin-bottom:1em">
+        <div class="row">
+            @Html.HiddenFor(x => x.Id)
+            <p class="col-md-2 FontSize">@Html.EditorFor(x => x.Bezeichnung)</p>
+            <p class="col-md-2 col-md-offset-1 FontSize">@Html.EditorFor(x => x.Strasse)</p>
+            <p class="col-md-2 col-md-offset-1 FontSize">@Html.EditorFor(x => x.Plz)</p>
+            <input type="submit" value="Speichern" class="btn btn-default col-md-1 col-md-offset-1" />
+            <p class="col-md-2">@Html.ActionLink("Alle Mitarbeiter", "MitarbeiterBearbeiten", "Innovation4AustriaMitarbeiter", new { fa_id = Model.Id }, new { @class = "btn buttonAction mitarbeiterbtn" })</p>
+        </div>
+
+        <div class="row">
+            <p class="col-md-2"></p>
+            <p class="col-md-offset-1 col-md-2 FontSize">@Html.EditorFor(x => x.Nummer)</p>
+            <p class="col-md-offset-1 col-md-2 FontSize">@Html.EditorFor(x => x.Ort)</p>
+            <p class="col-md-offset-1 col-md-1 FontSize color">@Html.LabelFor(x => x.aktiv)<text>&nbsp</text>@Html.CheckBoxFor(x => x.aktiv)</p>
+            @*<p class="col-md-2">@Html.ActionLink("Alle Mitarbeiter", "MitarbeiterBearbeiten", "Innovation4AustriaMitarbeiter", new { fa_id = Model.Id }, new { @class = "btn buttonAction mitarbeiterbtn" })</p>*@
+        
+            <button type="button" class="btn btn-info btn-lg mitarbeiterbtn" id="tranparentBackGround" data-toggle="modal" data-target="#myModal@(Model.Id)">Neuer Mitarbeiter</button>
+        </div>
+    </div>
+}
+
+
+@Html.Partial("~/Views/Innovation4AustriaMitarbeiter/_MitarbeiterAnlegen.cshtml", new Innovation4Austria.web.Models.BenutzerAnlegenModel() {Fa_id = Model.Id})
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
+

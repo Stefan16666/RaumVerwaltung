@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0a75929736eb4275986f0adfde119d3a" Name="Diagramm1">
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Art" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Ausstattung" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Bauwerk" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Benutzer" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Bild" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Buchung" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Buchungsdetails" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Firma" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Log" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Raum" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Raum_Ausstattung" Width="1.5" PointX="5.125" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Rechnung" Width="1.5" PointX="7.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Rechnungsdetails" Width="3.125" PointX="9.625" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Rolle" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Raum_Art" ManuallyRouted="false" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Raum_Ausstattung_Ausstattung" ManuallyRouted="false" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Raum_Bauwerk" ManuallyRouted="false" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Benutzer_Firma" ManuallyRouted="false" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Benutzer_Rolle" ManuallyRouted="false" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Log_benutzer" ManuallyRouted="false" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Bild_Raum" ManuallyRouted="false" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Buchung_Firma" ManuallyRouted="false" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Buchung_Raum" ManuallyRouted="false" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Buchungdeatails_buchung_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Rechnungsdetails_Buchungsdetails" ManuallyRouted="false" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Raum_Ausstattung_Raum" ManuallyRouted="false" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Rechnungsdetails_Rechnung" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.AlleRechnungenEinerFirma" Width="2.875" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Rechnung_Firma" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Kreditkarte" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Stornierung" Width="1.5" PointX="10.375" PointY="8.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

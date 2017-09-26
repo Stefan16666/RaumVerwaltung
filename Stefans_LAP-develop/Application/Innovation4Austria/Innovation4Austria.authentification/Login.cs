@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using log4net;
+using log4net.Config;
+
+namespace Innovation4Austria.authentification
+{
+    public class Login
+    {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        public static bool Anmelden()
+        {
+            
+        }
+    }
+}

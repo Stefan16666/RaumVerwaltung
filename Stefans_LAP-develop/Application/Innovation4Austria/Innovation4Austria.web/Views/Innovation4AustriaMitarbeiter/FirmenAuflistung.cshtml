@@ -1,0 +1,25 @@
+﻿@model List<Innovation4Austria.web.Models.FirmenModel>
+
+@{
+    ViewBag.Title = "FirmenAuflistung";
+}
+
+<div class="form-horizontal">
+    <div class="container margintopFirmenAuflistung" id="firmenauflistung">
+
+        @foreach (var item in Model)
+        {
+           @Html.Partial("_FirmenAuflistung", item)
+        }  
+
+    </div>
+
+</div>
+
+<div class="FontSize">
+   @Html.ActionLink("Neue Firma", "FirmaAnlegen", "Innovation4AustriaMitarbeiter",new { @class = "color" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

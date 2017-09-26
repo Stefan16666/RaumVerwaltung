@@ -1,0 +1,69 @@
+﻿@model Innovation4Austria.web.Models.BuchungsDetailModel
+@{
+    ViewBag.Title = "BuchungsDetails";
+}
+
+
+
+@using (Html.BeginForm("Raumbuchung", "Buchung", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container BuchungsDetail firmenauflistung">
+        <div class="row">
+            <div class="img-rounded" style="margin-top:2em">
+                <div class="col-md-6">
+                    <img src="~/Bild/BildZuRaum/@Model.Id" data-toggle="tooltip" title="@Model.Beschreibung" class="imgBuchungsdetail img-responsive">
+                </div>
+                <div class="col-md-6" style="margin-top:4em">
+                    <div class="SchriftgroesseKarten">
+                        <div>@Html.LabelFor(x => x.Bezeichnung): &nbsp</div>
+                        <div>
+                            @Model.Bezeichnung
+                        </div>
+                    </div>
+                    <div>
+                        <div class="SchriftgroesseKarten">@Model.RaumArt</div>
+                    </div>
+                    <div class="SchriftgroesseKarten">@Model.Groesse m²</div>
+                    <div class="SchriftgroesseKarten">@Model.Beschreibung</div>
+                    <div class="SchriftgroesseKarten">€ @Model.Preis,- / Tag</div>
+                    <div class="SchriftgroesseKarten">@Model.VonDatum.ToShortDateString()&nbsp;-&nbsp;@Model.BisDatum.ToShortDateString()</div>    
+                    @foreach (var item in Model.RaumAusstattung)
+                    {
+                        <img src="~/Bild/IconZuAusstattung/@item.Ausstattungs_Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung" style="width:4em; margin:1em">                      
+                    }
+                    @if (User.IsInRole(Innovation4Austria.web.AppCode.Validation.INNOVATION4AUSTRIAMITARBEITER))
+                    {
+                        <div class="FontSize">
+                            @Html.DropDownListFor(x => x.Fa_Id, new SelectList(Model.Firma, "Id", "Bezeichnung"))
+                        </div>
+                    }
+                    @Html.Hidden("Id")
+                    @Html.Hidden("VonDatum")
+                    @Html.Hidden("BisDatum")
+                    @Html.Hidden("Preis")
+                                  
+                    <div class="form-group" style="margin:1em">
+                        <div>
+                            <input type="submit" value="Verbindlich Buchen" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}
+
+

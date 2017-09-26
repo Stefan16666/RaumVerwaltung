@@ -1,0 +1,45 @@
+﻿@model Innovation4Austria.web.Models.RaumBuchungsModel
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+
+<div class="container" id="raumanzeige" data-message="@TempData[Innovation4Austria.web.AppCode.ConstStrings.WARNING_MESSAGE]">
+    @if (Model!=null && Model.gesuchteRaumListe != null)
+    {
+        if (Model.gesuchteRaumListe.Count == 0)
+        {
+            <h1 class="keineErgebnisseGefunden">keine Suchergebnisse gefunden</h1>
+        }
+        else
+        {
+            foreach (var raum in Model.gesuchteRaumListe)
+            {
+                using (Html.BeginForm("BuchungsDetails", "Buchung", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="col-md-3 Kartenansicht">
+                        <img src="~/Bild/BildZuRaum/@raum.Id" data-toggle="tooltip" title="@raum.Beschreibung" class="imgTag">
+                        <div class="SchriftgroesseKarten">Raum&nbsp;@raum.Bezeichnung</div>
+                        <div class="SchriftgroesseKarten RaumArtProperty">@raum.RaumArt</div>
+                        <div class="SchriftgroesseKarten">@raum.Groesse m²</div>
+                        <div class="SchriftgroesseKarten">@raum.Beschreibung</div>
+                        <div class="SchriftgroesseKarten">€ @raum.Preis,- / Tag</div>
+                        @Html.HiddenFor(x => x.StartDatum)
+                        @Html.HiddenFor(x => x.EndDatum)
+                        @Html.HiddenFor(x => x.datumVonBis)
+                        @if (Request.RequestType == "POST")
+                        {
+                            <div class="form-group">
+                                <div>
+                                    <input type="submit" value="Zur Buchung" class="btn btn-default" style="margin-top:2em"/>
+                                </div>
+                            </div>
+                        }
+                        <input id="@raum.Id" name="Id" value="@raum.Id" type="hidden" />
+
+                    </div>
+                }
+            }
+        }
+    }
+
+</div>

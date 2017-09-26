@@ -1,0 +1,46 @@
+﻿@model Innovation4Austria.web.Models.BenutzerAnlegenModel
+
+@using (Html.BeginForm("MitarbeiterAnlegen", "Innovation4AustriaMitarbeiter", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal fade" id="myModal@(Model.Fa_id)" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title FontSize ModalFontColor">Neuer Mitarbeiter</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.HiddenFor(x => x.Fa_id)
+                    <p class="FontSize ModalFontColor">@Html.LabelFor(x => x.Emailadresse)</p>
+                    <p class="FontSize">@Html.TextBoxFor(x => x.Emailadresse)</p>
+                    <div class="FontSize"  style="color:red">@Html.ValidationMessageFor(x => x.Emailadresse)</div>
+                    <p class="FontSize ModalFontColor">@Html.LabelFor(x => x.Vorname)</p>
+                    <p class="FontSize">@Html.TextBoxFor(x => x.Vorname)</p>
+                    <p class="FontSize"  style="color:red">@Html.ValidationMessageFor(x => x.Vorname)</p>
+                    <p class="FontSize ModalFontColor">@Html.LabelFor(x => x.Nachname)</p>
+                    <p class="FontSize">@Html.TextBoxFor(x => x.Nachname)</p>
+                    <p class="FontSize"  style="color:red">@Html.ValidationMessageFor(x => x.Nachname)</p>
+                    <p class="FontSize ModalFontColor">@Html.LabelFor(x => x.NeuesPasswort)</p>
+                    <p class="FontSize">@Html.EditorFor(x => x.NeuesPasswort)</p>
+                    <p class="FontSize"  style="color:red">@Html.ValidationMessageFor(x => x.NeuesPasswort)</p>
+                    <p class="FontSize ModalFontColor">@Html.LabelFor(x => x.NeuesPasswortBestätigung)</p>
+                    <p class="FontSize">@Html.EditorFor(x => x.NeuesPasswortBestätigung)</p>
+                    <p class="FontSize" style="color:red">@Html.ValidationMessageFor(x => x.NeuesPasswortBestätigung)</p>
+                    <input style="text-align:center" type="submit" value="Speichern" class="btn btn-default  mitarbeiterbtn" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

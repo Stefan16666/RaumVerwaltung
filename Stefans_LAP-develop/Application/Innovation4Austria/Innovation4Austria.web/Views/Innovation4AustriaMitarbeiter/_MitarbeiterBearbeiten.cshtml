@@ -1,0 +1,18 @@
+﻿@model Innovation4Austria.web.Models.BenutzerModel
+
+
+@using (Html.BeginForm("MitarbeiterBearbeiten", "Innovation4AustriaMitarbeiter", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="fa-border img-rounded">
+        <div class="row Auflistungrand">
+            @Html.HiddenFor(x => x.Id)
+            <p class="col-md-2 FontSize">@Html.EditorFor(x => x.Emailadresse)</p>
+            <p class="col-md-2 col-md-offset-1 FontSize">@Html.EditorFor(x => x.Vorname)</p>
+            <p class="col-md-2 col-md-offset-1 FontSize">@Html.EditorFor(x => x.Nachname)</p>
+            <p class="col-md-2 FontSize">@Html.LabelFor(x => x.Aktiv)<text>&nbsp</text>@Html.CheckBoxFor(x => x.Aktiv)</p>
+            <input type="submit" value="Speichern" class="btn btn-default col-md-1 mitarbeiterbtn" />
+        </div>
+    </div>
+}

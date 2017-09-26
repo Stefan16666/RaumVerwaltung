@@ -1,0 +1,78 @@
+﻿@model Innovation4Austria.web.Models.RechnungErstellenModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Example 1</title>
+    <link href="~/Content/jquery.daterangepicker/Rechnung.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="clearfix">
+        <div id="logo">
+            <img src="logo.png">
+        </div>
+        <h1>Innovation 4 Austria</h1>
+        <div id="company" class="clearfix">
+            <div>Innovation 4 Autria</div>
+            <div>Simmeringer Hauptstrasse 44<br /> 1110 Wien, AT</div>
+            <div>(01) 519 19 0450</div>
+            <div><a href="mailto:innovation4austria@office.com">innovation4austria@office.com</a></div>
+        </div>
+        <div id="project">
+            @*<div><span>PROJECT</span> Website development</div>*@
+            <div><span>Firma</span>@Model.Firmenname</div>
+            <div><span>Adresse</span>@Model.Firmenstrasse&nbsp;@Model.FirmenstrassenNummer</div>
+            <div><span></span>@Model.FirmenPlz&nbsp;@Model.FirmenOrt</div>
+            @*<div><a href="mailto:john@example.com">john@example.com</a></div>*@
+            <div><span>Datum</span>@Model.Datum.ToShortDateString()</div>
+            @*<div><span>DUE DATE</span> September 17, 2015</div>*@
+        </div>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th class="service">Buchungsnummer</th>
+                    <th class="desc">Raumnummer</th>                   
+                    <th></th>                   
+                    <th>Datum</th>
+                    <th>Preis/Tag</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.RechnungsDetails)
+                {
+                    <tr>
+                        <td class="service">@item.Buchungs_ID</td>
+                        <td class="desc">@item.RaumNummer</td>                        
+                        <td class="qty"></td>
+                        <td class="unit">@item.Buchungsdatum.ToShortDateString()</td>
+                        <td class="total">€&nbsp;@item.Preis</td>
+                    </tr>
+
+                }
+                <tr>
+                    <td colspan="4">Umsatzsteuer beträgt 20%</td>
+                    <td class="total">€&nbsp;@Model.Steuerbetrag</td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="grand total">Gesamtpreis</td>
+                    <td class="grand total">€&nbsp;@Model.Gesamtpreis</td>
+                </tr>
+            </tbody>
+        </table>
+        @*<div id="notices">
+            <div>NOTICE:</div>
+            <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+        </div>*@
+    </main>
+    <footer>
+       
+    </footer>
+</body>
+</html>
